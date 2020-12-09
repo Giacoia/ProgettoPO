@@ -15,19 +15,29 @@ You should have received a copy of the GNU General Public License
 along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "Autore.h"
+#ifndef AUTORE_H
+#define AUTORE_H
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-}
+#include<QMainWindow>
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+class Autore {
+private:
+    int id;
+    QString nome;
+    QString cognome;
+    QList<QString> afferenza;
+public:
+    QString getNome() { return nome; }
+    QString getCognome() { return cognome; }
+    int getId() { return id; }
+    void aggiungiAfferenza(QString a){
+        for (auto it = afferenza.begin(); it != afferenza.end(); it++){
+            QString afferenza = *it;
+            if (afferenza == a)
+                return;
+        }
+        afferenza.push_back(a);
+    }
+};
 
+#endif // AUTORE_H

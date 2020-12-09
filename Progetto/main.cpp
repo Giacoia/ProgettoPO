@@ -16,6 +16,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "mainwindow.h"
+#include "Autore.h"
 
 #include <QApplication>
 
