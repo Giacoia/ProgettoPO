@@ -19,6 +19,9 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include "GestoreListe.h"
+#include "Autore.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,7 +35,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pag_autore_clicked();
+
+    void on_push_autore_clicked();
+
+    void on_back_home_clicked();
+
+    void on_pag_conferenza_clicked();
+
 private:
+    GestoreListe gestore;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

@@ -15,40 +15,38 @@ You should have received a copy of the GNU General Public License
 along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AUTORE_H
-#define AUTORE_H
+#ifndef CONFERENZA_H
+#define CONFERENZA_H
 
-#include<QMainWindow>
+#include <QMainWindow>
 
-class Autore {
+class Conferenza
+{
 private:
-    int id;
     QString nome;
-    QString cognome;
-    QString afferenza;
-    QList<QString> afferenze;
+    QString acronimo;
+    QString luogo;
+    QString organizzatori;
+    int data;
+    int numPartecipanti;
 public:
-    Autore(int i, QString n, QString c, QString a): id(i), nome(n), cognome(c), afferenza(a) {}
     QString getNome() const { return nome; }
     void setNome(QString n) { nome = n; }
 
-    QString getCognome() const { return cognome; }
-    void setCognome(QString c) { cognome = c; }
+    QString getAcronimo() const { return acronimo; }
+    void setAcronimo(QString a) { acronimo = a; }
 
-    int getId() const { return id; }
-    void setId(int i) { id = i; }
+    QString getLuogo() const { return luogo; }
+    void setLuogo(QString l) { luogo = l; }
 
-    QString getAfferenza() const { return afferenza; }
-    void setAfferenza(QString a) { afferenza = a; }
+    QString getOrganizzatori() const { return organizzatori; }
+    void setOrganizzatori(QString o) { organizzatori = o; }
 
-    bool aggiungiAfferenze(QString a){
-        for (auto aff: afferenze){
-            if (aff == a)
-                return false;
-        }
-        afferenze.push_back(a);
-        return true;
-    }
+    int getData() const { return data; }
+    void setData(int d) { data = d; }
+
+    int getNumPartecipanti() const { return numPartecipanti; }
+    void setNumPartecipanti(int n) { numPartecipanti = n; }
 };
 
-#endif // AUTORE_H
+#endif // CONFERENZA_H
