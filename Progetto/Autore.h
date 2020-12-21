@@ -20,15 +20,12 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 
 #include<QMainWindow>
 
+
 class Autore {
-private:
-    int id;
-    QString nome;
-    QString cognome;
-    QString afferenza;
-    QList<QString> afferenze;
+
 public:
-    Autore(int i, QString n, QString c, QString a): id(i), nome(n), cognome(c), afferenza(a) {}
+    Autore(int i, QString n, QString c, QList<QString> a): id(i), nome(n), cognome(c), afferenze(a) {}
+
     QString getNome() const { return nome; }
     void setNome(QString n) { nome = n; }
 
@@ -38,17 +35,12 @@ public:
     int getId() const { return id; }
     void setId(int i) { id = i; }
 
-    QString getAfferenza() const { return afferenza; }
-    void setAfferenza(QString a) { afferenza = a; }
-
-    bool aggiungiAfferenze(QString a){
-        for (auto aff: afferenze){
-            if (aff == a)
-                return false;
-        }
-        afferenze.push_back(a);
-        return true;
-    }
+    const QList<QString>& allAfferenze() const { return afferenze; }
+private:
+    int id;
+    QString nome;
+    QString cognome;
+    QList<QString> afferenze;
 };
 
 #endif // AUTORE_H

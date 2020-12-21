@@ -23,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->push_autore->setToolTip("Inserisce l'autore nella lista");
-    connect (ui->back_home, &QPushButton::clicked, this, &MainWindow::on_back_home_clicked);
-    connect (ui->back_home_2, &QPushButton::clicked, this, &MainWindow::on_back_home_clicked);
+    ui->aggiungiAutore->setToolTip("Aggiunge l'autore alla lista");
+    connect (ui->backHome, &QPushButton::clicked, this, &MainWindow::on_backToHome);
+    connect (ui->backHome_2, &QPushButton::clicked, this, &MainWindow::on_backToHome);
 }
 
 MainWindow::~MainWindow()
@@ -33,42 +33,84 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pag_autore_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->aggiungiAutore);
-}
 
-void MainWindow::on_push_autore_clicked()
+
+void MainWindow::on_aggiungiAfferenza_clicked()
 {
-    int id = ui->edit_idAutore->text().toInt();
-    QString nome = ui->edit_nomeAutore->text();
-    QString cognome = ui->edit_cognomeAutore->text();
-    QString afferenza = ui->edit_afferenza->toPlainText();
-    if (nome.isEmpty() || cognome.isEmpty() || afferenza.isEmpty()){
-        QMessageBox mess(QMessageBox::Warning,"Attenzione","riempire eventuali campi vuoti",QMessageBox::Ok,this);
-        mess.exec();
+    QString aff = ui->afferenzaText->toPlainText();
+    if (aff.isEmpty()){
+        QMessageBox::critical(this,"Campo vuoto","Inserire un'afferenza!",QMessageBox::Ok);
         return;
     }
-    Autore A(id,nome,cognome,afferenza);
-    if(gestore.aggiungiAutori(A)){
-        ui->lista_autori->addItem("Id: " + ui->edit_idAutore->text() + " -- Nome: " + nome);
-        QMessageBox::information(this,"Titolo","Autore inserito con successo");
+    for (auto a: afferenze){
+        if (a == aff){
+            QMessageBox::critical(this,"Afferenza","Afferenza già presente!",QMessageBox::Ok);
+            return;
+        }
     }
-    else if(!gestore.aggiungiAutori(A)){
-        QMessageBox mess(QMessageBox::Critical,"Attenzione","id già presente",QMessageBox::Ok,this);
-        mess.exec();
-    }
-    ui->edit_nomeAutore->clear();
-    ui->edit_cognomeAutore->clear();
-    ui->edit_afferenza->clear();
+    afferenze.push_back(aff);
+    ui->afferenzaText->clear();
 }
 
-void MainWindow::on_back_home_clicked()
+void MainWindow::on_inserisciAutore_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->home);
+    ui->stackedWidget->setCurrentWidget(ui->aggiungiAutorePage);
 }
 
-void MainWindow::on_pag_conferenza_clicked()
+void MainWindow::on_aggiungiAutore_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->aggiungiConferenza);
+    int id = ui->idAutoreBox->text().toInt();
+    QString nome = ui->nomeAutoreText->text();
+    QString cognome = ui->cognomeText->text();
+    if (nome.isEmpty() || cognome.isEmpty() || afferenze.isEmpty()){
+        QMessageBox::critical(this,"Campo vuoto","Riempire eventuali campi vuoti!",QMessageBox::Ok);
+        return;
+    }
+    if (gestore.aggiungiAutore(id,nome,cognome,afferenze)){
+        ui->listAutori->addItem("Id: " + ui->idAutoreBox->text() + " - Nome: " + nome + " - Cognome: " + cognome);
+        ui->statusBar->showMessage("Autore inserito con successo!", 3000);
+    }
+    else{
+        QMessageBox::critical(this,"Errore","Autore già presente!",QMessageBox::Ok);
+    }
+    ui->nomeAutoreText->clear();
+    ui->cognomeText->clear();
+    afferenze.clear();
+}
+
+void MainWindow::on_backToHome()
+{
+    ui->stackedWidget->setCurrentWidget(ui->homePage);
+}
+
+void MainWindow::on_VisualizzaAutori_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->VisualizzaAutoriPage);
+    const QList<Autore>& autori = gestore.autore();
+    ui->listAutoriCompleta->clear();
+    for (auto a: autori){
+        const QList<QString>& afferenza = a.allAfferenze();
+        QString allAff;
+        for (auto it = afferenza.begin(); it != afferenza.end(); it++){
+            if (it == afferenza.end()-1)
+                allAff += *it + ".";
+            else
+                allAff += *it + ", ";
+        }
+        int i = a.getId();
+        QString id = QString::number(i);
+        ui->listAutoriCompleta->addItem("Id: " + id + " - Nome: " + a.getNome() + " - Cognome: " + a.getCognome() + " - Afferenze/a: " + allAff);
+    }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->AggiungiArticoloPage);
+    const QList<Autore>& autori = gestore.autore();
+    ui->autoriDaScegliere->clear();
+    for (auto a: autori){
+        int i = a.getId();
+        QString id = QString::number(i);
+        ui->autoriDaScegliere->addItem("Id: " + id + " - Nome: " + a.getNome() + " - Cognome: " + a.getCognome());
+    }
 }

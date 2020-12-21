@@ -18,35 +18,23 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFERENZA_H
 #define CONFERENZA_H
 
-#include <QMainWindow>
+#include "Pubblicazioni.h"
 
-class Conferenza
-{
-private:
-    QString nome;
-    QString acronimo;
-    QString luogo;
-    QString organizzatori;
-    int data;
-    int numPartecipanti;
+class Conferenza: Pubblicazioni{
+
 public:
-    QString getNome() const { return nome; }
-    void setNome(QString n) { nome = n; }
-
-    QString getAcronimo() const { return acronimo; }
-    void setAcronimo(QString a) { acronimo = a; }
+    Conferenza(QString n, QString a, QString d, QString l, int nP): Pubblicazioni(n,a,d), luogo(l), numPartecipanti(nP) {}
 
     QString getLuogo() const { return luogo; }
     void setLuogo(QString l) { luogo = l; }
 
-    QString getOrganizzatori() const { return organizzatori; }
-    void setOrganizzatori(QString o) { organizzatori = o; }
-
-    int getData() const { return data; }
-    void setData(int d) { data = d; }
-
     int getNumPartecipanti() const { return numPartecipanti; }
     void setNumPartecipanti(int n) { numPartecipanti = n; }
+
+private:
+    QString luogo;
+    QList<QString> organizzatori;
+    int numPartecipanti;
 };
 
 #endif // CONFERENZA_H

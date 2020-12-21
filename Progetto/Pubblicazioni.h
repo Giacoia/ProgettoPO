@@ -15,43 +15,31 @@ You should have received a copy of the GNU General Public License
 along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef PUBBLICAZIONI_H
+#define PUBBLICAZIONI_H
 
 #include <QMainWindow>
-#include <QMessageBox>
-#include "GestoreAutori.h"
-#include "GestoreArticoli.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class Pubblicazioni{
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Pubblicazioni(): nome(""),acronimo(""),data("") {}
+    Pubblicazioni(QString n, QString a, QString d): nome(n), acronimo(a), data(d) {}
+    virtual ~Pubblicazioni() {}
 
-private slots:
-    void on_aggiungiAfferenza_clicked();
+    QString getNome() const { return nome; }
+    void setNome(QString n) { nome = n; }
 
-    void on_inserisciAutore_clicked();
+    QString getAcronimo() const { return acronimo; }
+    void setAcronimo(QString a) { acronimo = a; }
 
-    void on_aggiungiAutore_clicked();
-
-    void on_backToHome();
-
-    void on_VisualizzaAutori_clicked();
-
-    void on_pushButton_clicked();
+    QString getData() const { return data; }
+    void setData(QString d) { data = d; }
 
 private:
-    QList<Autore> autoriArticolo;
-    QList<QString> afferenze;
-    GestoreAutori gestore;
-    Ui::MainWindow *ui;
+    QString nome;
+    QString acronimo;
+    QString data;
 };
-#endif // MAINWINDOW_H
+
+#endif // PUBBLICAZIONI_H
