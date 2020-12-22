@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     GestoreArticoli.cpp \
     GestoreAutori.cpp \
+    GestorePubblicazioni.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     Conferenza.h \
     GestoreArticoli.h \
     GestoreAutori.h \
+    GestorePubblicazioni.h \
     Pubblicazioni.h \
     Rivista.h \
     mainwindow.h

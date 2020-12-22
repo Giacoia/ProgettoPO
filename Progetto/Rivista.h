@@ -21,10 +21,10 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMainWindow>
 #include "Pubblicazioni.h"
 
-class Rivista: Pubblicazioni {
+class Rivista: public Pubblicazioni {
 
 public:
-    Rivista(QString n, QString a, QString d, QString e, int v): Pubblicazioni(n,a,d), editore(e), volume(v) {}
+    Rivista(QString n, QString a, QString d, QList<Articolo> ar, QString e, int v): Pubblicazioni(n,a,d,ar), editore(e), volume(v) {}
 
     QString getEditore() const { return editore; }
     void setEditore(QString e) { editore = e; }

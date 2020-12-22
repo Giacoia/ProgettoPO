@@ -22,6 +22,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 #include "GestoreAutori.h"
 #include "GestoreArticoli.h"
+#include "GestorePubblicazioni.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,14 +45,25 @@ private slots:
 
     void on_backToHome();
 
-    void on_VisualizzaAutori_clicked();
+    void on_visualizzaAutori_clicked();
 
-    void on_pushButton_clicked();
+    void on_inserisciArticolo_clicked();
+
+    void on_inserisciRivista_clicked();
+
+    void on_aggiungiRivista_clicked();
+
+    void on_inserisciConferenza_clicked();
+
+    void on_aggiungiOrganizzatore_clicked();
+
+    void on_aggiungiConferenza_clicked();
 
 private:
-    QList<Autore> autoriArticolo;
-    QList<QString> afferenze;
-    GestoreAutori gestore;
+    QList<Articolo> articoli;
+    QList<QString> generica;
+    GestoreAutori gestoreAutori;
+    GestorePubblicazioni gestPubblicazioni;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

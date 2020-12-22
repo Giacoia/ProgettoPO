@@ -4,10 +4,12 @@
 #include "Articolo.h"
 
 class GestoreArticoli{
+
 public:
-    bool aggiungiArticolo(int , int, QString, QList<Autore>, QList<QString>, float, QList<QString>);
+    bool aggiungiArticolo(int , int, QString, QList<Autore>, QList<QString>, float, QList<QString>, QString);
 
     const QList<Articolo>& autore() const { return articoli; }
+
 private:
     QList<Articolo> articoli;
 };

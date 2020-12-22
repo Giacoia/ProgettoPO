@@ -24,7 +24,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 class Articolo{
 
 public:
-    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC): id(i), numPagine(n), titolo(t), autori(a), keywords(k), prezzo(p), art_correlati(aC) {}
+    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC, QString pI): id(i), numPagine(n), titolo(t), autori(a), keywords(k), prezzo(p), art_correlati(aC), pubblicatoPer(pI) {}
 
     int getId() const { return id; }
     void setId(int i) { id = i; }
@@ -41,6 +41,7 @@ public:
     const QList<QString>& keyword() { return keywords; }
     const QList<QString>& artCorrelati() { return art_correlati; }
 
+    QString getPubblicatoPer() const { return pubblicatoPer; }
 private:
     int id;
     int numPagine;
@@ -49,7 +50,7 @@ private:
     QList<QString> keywords;
     float prezzo;
     QList<QString> art_correlati;
-
+    QString pubblicatoPer;
 };
 
 #endif // ARTICOLO_H

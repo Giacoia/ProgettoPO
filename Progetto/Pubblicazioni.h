@@ -19,12 +19,13 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #define PUBBLICAZIONI_H
 
 #include <QMainWindow>
+#include "Articolo.h"
 
 class Pubblicazioni{
 
 public:
     Pubblicazioni(): nome(""),acronimo(""),data("") {}
-    Pubblicazioni(QString n, QString a, QString d): nome(n), acronimo(a), data(d) {}
+    Pubblicazioni(QString n, QString a, QString d, QList<Articolo> ar): nome(n), acronimo(a), data(d), articoli(ar) {}
     virtual ~Pubblicazioni() {}
 
     QString getNome() const { return nome; }
@@ -40,6 +41,7 @@ private:
     QString nome;
     QString acronimo;
     QString data;
+    QList<Articolo> articoli;
 };
 
 #endif // PUBBLICAZIONI_H

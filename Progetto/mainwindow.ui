@@ -34,7 +34,7 @@
          <string>Aggiungi Autore</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="VisualizzaAutori">
+       <widget class="QPushButton" name="visualizzaAutori">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -47,17 +47,43 @@
          <string>Visualizza Autori</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="inserisciArticolo">
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>300</y>
+          <y>420</y>
           <width>141</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
          <string>Aggiungi Articolo</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="inserisciRivista">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>360</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Aggiungi Rivista</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="inserisciConferenza">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>300</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Aggiungi Conferenza</string>
         </property>
        </widget>
       </widget>
@@ -111,7 +137,7 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="nome">
+          <widget class="QLabel" name="nomeAutore">
            <property name="font">
             <font>
              <weight>75</weight>
@@ -195,12 +221,12 @@
        </widget>
       </widget>
       <widget class="QWidget" name="VisualizzaAutoriPage">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>40</x>
           <y>20</y>
-          <width>721</width>
+          <width>741</width>
           <height>541</height>
          </rect>
         </property>
@@ -225,17 +251,275 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="AggiungiArticoloPage">
+      <widget class="QWidget" name="aggiungiConferenzaPage">
+       <widget class="QCalendarWidget" name="calendarWidget">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>280</y>
+          <width>401</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="verticalHeaderFormat">
+         <enum>QCalendarWidget::NoVerticalHeader</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="backHome_5">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>520</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
        <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>30</y>
-          <width>491</width>
-          <height>541</height>
+          <x>40</x>
+          <y>90</y>
+          <width>401</width>
+          <height>183</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="nomeConferenza">
+           <property name="text">
+            <string>Nome:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="nomeConfText"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="acronimoConferenza">
+           <property name="text">
+            <string>Acronimo:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="acronimoConfText"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="luogo">
+           <property name="text">
+            <string>luogo:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="luogoText"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="numPartecipanti">
+           <property name="text">
+            <string>Numero di Partecipanti:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="numPartecipantiBox"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="organizzatore">
+           <property name="text">
+            <string>Organizzatore:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="organizzatoreText"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QPushButton" name="aggiungiOrganizzatore">
+           <property name="text">
+            <string>aggiungi organizzatore</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>90</y>
+          <width>351</width>
+          <height>361</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QListWidget" name="listConferenza"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aggiungiConferenza">
+           <property name="text">
+            <string>aggiungi</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="visualizzaConferenzePage">
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>80</y>
+          <width>256</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="aggiungiRivistaPage">
+       <widget class="QCalendarWidget" name="calendarioRivista">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>260</y>
+          <width>401</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="gridVisible">
+         <bool>false</bool>
+        </property>
+        <property name="horizontalHeaderFormat">
+         <enum>QCalendarWidget::ShortDayNames</enum>
+        </property>
+        <property name="verticalHeaderFormat">
+         <enum>QCalendarWidget::NoVerticalHeader</enum>
+        </property>
+        <property name="navigationBarVisible">
+         <bool>true</bool>
+        </property>
+        <property name="dateEditEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="backHome_4">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>520</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>455</x>
+          <y>90</y>
+          <width>341</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QListWidget" name="listRiviste"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aggiungiRivista">
+           <property name="text">
+            <string>Aggiungi</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>401</width>
+          <height>121</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="nomeRivista">
+           <property name="text">
+            <string>Nome:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="nomeRivistaText"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="acronimoRivista">
+           <property name="text">
+            <string>Acronimo:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="acronimoRivistaText"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="editore">
+           <property name="text">
+            <string>Editore:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="editoreText"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="volume">
+           <property name="text">
+            <string>Volume:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="volumeBox"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="aggiungiArticoloPage">
+       <widget class="QPushButton" name="backHome_3">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>560</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>home</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>301</width>
+          <height>258</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_3">
          <item row="0" column="0">
           <widget class="QLabel" name="idArticolo">
            <property name="font">
@@ -249,74 +533,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="idArticoloBox"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="titolo">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Titolo:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="titoloText"/>
-         </item>
-         <item row="6" column="0" colspan="2">
-          <widget class="QLabel" name="numPagine">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Numero Pagine:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QSpinBox" name="numPagineBox"/>
-         </item>
-         <item row="9" column="0" colspan="2">
-          <widget class="QLabel" name="autori">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Lista di autori:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="1">
-          <widget class="QListWidget" name="autoriDaScegliere"/>
-         </item>
-         <item row="12" column="0" colspan="2">
-          <widget class="QLabel" name="keywords">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Lista di keyword:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="13" column="1">
-          <widget class="QTextEdit" name="keywordText"/>
-         </item>
-         <item row="14" column="0">
+         <item row="6" column="0">
           <widget class="QLabel" name="prezzo">
            <property name="font">
             <font>
@@ -329,10 +546,43 @@
            </property>
           </widget>
          </item>
-         <item row="15" column="1">
+         <item row="6" column="1">
+          <widget class="QDoubleSpinBox" name="PrezzoBox">
+           <property name="maximum">
+            <double>999.990000000000009</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="idArticoloBox"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="numPagine">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Numero Pagine:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="numPagineBox"/>
+         </item>
+         <item row="9" column="1">
           <widget class="QTextEdit" name="artCorrelatiText"/>
          </item>
-         <item row="16" column="0" colspan="2">
+         <item row="10" column="1">
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>aggiuni articoli correlati</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
           <widget class="QLabel" name="artCorrelati">
            <property name="font">
             <font>
@@ -345,12 +595,155 @@
            </property>
           </widget>
          </item>
-         <item row="18" column="1">
-          <widget class="QDoubleSpinBox" name="PrezzoBox">
-           <property name="maximum">
-            <double>999.990000000000009</double>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>20</y>
+          <width>451</width>
+          <height>391</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="titolo">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Titolo:</string>
            </property>
           </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="autori">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Lista di autori:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QListWidget" name="autoriDaScegliere"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="keywords">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Lista di keyword:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QTextEdit" name="keywordText"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="titoloText"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>aggiungi keyword</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>370</y>
+          <width>298</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="pubblicatoIn">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Pubblicato per:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rivistaButton">
+           <property name="text">
+            <string>Rivista</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="conferenzaButton">
+           <property name="text">
+            <string>Conferenza</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>400</y>
+          <width>301</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Nome rivista/afferenza:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="PubblicatoIn"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>430</y>
+          <width>301</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>anno di pubblicazione:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit"/>
          </item>
         </layout>
        </widget>

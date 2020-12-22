@@ -24,8 +24,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->aggiungiAutore->setToolTip("Aggiunge l'autore alla lista");
+    ui->aggiungiRivista->setToolTip("Aggiunge la rivista alla lista");
     connect (ui->backHome, &QPushButton::clicked, this, &MainWindow::on_backToHome);
     connect (ui->backHome_2, &QPushButton::clicked, this, &MainWindow::on_backToHome);
+    connect (ui->backHome_3, &QPushButton::clicked, this, &MainWindow::on_backToHome);
+    connect (ui->backHome_4, &QPushButton::clicked, this, &MainWindow::on_backToHome);
+    connect (ui->backHome_5, &QPushButton::clicked, this, &MainWindow::on_backToHome);
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +37,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_backToHome()
+{
+    ui->stackedWidget->setCurrentWidget(ui->homePage);
+}
 
+void MainWindow::on_inserisciAutore_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->aggiungiAutorePage);
+}
 
 void MainWindow::on_aggiungiAfferenza_clicked()
 {
@@ -42,19 +54,14 @@ void MainWindow::on_aggiungiAfferenza_clicked()
         QMessageBox::critical(this,"Campo vuoto","Inserire un'afferenza!",QMessageBox::Ok);
         return;
     }
-    for (auto a: afferenze){
+    for (auto a: generica){
         if (a == aff){
-            QMessageBox::critical(this,"Afferenza","Afferenza già presente!",QMessageBox::Ok);
+            QMessageBox::critical(this,"Afferenze","Afferenza già presente!",QMessageBox::Ok);
             return;
         }
     }
-    afferenze.push_back(aff);
+    generica.push_back(aff);
     ui->afferenzaText->clear();
-}
-
-void MainWindow::on_inserisciAutore_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->aggiungiAutorePage);
 }
 
 void MainWindow::on_aggiungiAutore_clicked()
@@ -62,11 +69,11 @@ void MainWindow::on_aggiungiAutore_clicked()
     int id = ui->idAutoreBox->text().toInt();
     QString nome = ui->nomeAutoreText->text();
     QString cognome = ui->cognomeText->text();
-    if (nome.isEmpty() || cognome.isEmpty() || afferenze.isEmpty()){
+    if (nome.isEmpty() || cognome.isEmpty() || generica.isEmpty()){
         QMessageBox::critical(this,"Campo vuoto","Riempire eventuali campi vuoti!",QMessageBox::Ok);
         return;
     }
-    if (gestore.aggiungiAutore(id,nome,cognome,afferenze)){
+    if (gestoreAutori.aggiungiAutore(id,nome,cognome,generica)){
         ui->listAutori->addItem("Id: " + ui->idAutoreBox->text() + " - Nome: " + nome + " - Cognome: " + cognome);
         ui->statusBar->showMessage("Autore inserito con successo!", 3000);
     }
@@ -75,18 +82,14 @@ void MainWindow::on_aggiungiAutore_clicked()
     }
     ui->nomeAutoreText->clear();
     ui->cognomeText->clear();
-    afferenze.clear();
+    generica.clear();
+    ui->idAutoreBox->setValue(0);
 }
 
-void MainWindow::on_backToHome()
-{
-    ui->stackedWidget->setCurrentWidget(ui->homePage);
-}
-
-void MainWindow::on_VisualizzaAutori_clicked()
+void MainWindow::on_visualizzaAutori_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->VisualizzaAutoriPage);
-    const QList<Autore>& autori = gestore.autore();
+    const QList<Autore>& autori = gestoreAutori.autore();
     ui->listAutoriCompleta->clear();
     for (auto a: autori){
         const QList<QString>& afferenza = a.allAfferenze();
@@ -103,14 +106,98 @@ void MainWindow::on_VisualizzaAutori_clicked()
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_inserisciConferenza_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->AggiungiArticoloPage);
-    const QList<Autore>& autori = gestore.autore();
+    ui->stackedWidget->setCurrentWidget(ui->aggiungiConferenzaPage);
+}
+
+
+void MainWindow::on_inserisciRivista_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->aggiungiRivistaPage);
+}
+
+
+void MainWindow::on_aggiungiRivista_clicked()
+{
+    QString n = ui->nomeRivistaText->text();
+    QString a = ui->acronimoRivistaText->text();
+    QString e = ui->editoreText->text();
+    QDate data = ui->calendarioRivista->selectedDate();
+    QString d = data.toString(Qt::DateFormat::ISODate);
+    int v = ui->volumeBox->text().toInt();
+
+    if (n.isEmpty() || a.isEmpty() || e.isEmpty() || d.isEmpty()){
+        QMessageBox::critical(this,"Campo vuoto","Riempire eventuali campi vuoti!",QMessageBox::Ok);
+        return;
+    }
+
+    if (gestPubblicazioni.aggiungiRivista(n,a,e,articoli,d,v)){
+        ui->listRiviste->addItem("Nome: " + n + " - Data: " + d);
+        ui->statusBar->showMessage("Rivista aggiunta con successo!",3000);
+    }
+    else{
+        QMessageBox::critical(this,"Errore","Rivista già presente!",QMessageBox::Ok);
+    }
+    ui->nomeRivistaText->text().clear();
+    ui->acronimoRivistaText->text().clear();
+    ui->editoreText->text().clear();
+    ui->volumeBox->setValue(0);
+}
+
+void MainWindow::on_inserisciArticolo_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->aggiungiArticoloPage);
+    const QList<Autore>& autori = gestoreAutori.autore();
     ui->autoriDaScegliere->clear();
     for (auto a: autori){
         int i = a.getId();
         QString id = QString::number(i);
         ui->autoriDaScegliere->addItem("Id: " + id + " - Nome: " + a.getNome() + " - Cognome: " + a.getCognome());
     }
+}
+
+void MainWindow::on_aggiungiOrganizzatore_clicked()
+{
+    QString org = ui->organizzatoreText->text();
+    if (org.isEmpty()){
+        QMessageBox::critical(this,"Campo vuoto","Inserire un organizzatore!",QMessageBox::Ok);
+        return;
+    }
+    for (auto a: generica){
+        if (a == org){
+            QMessageBox::critical(this,"Organizzatori","Organizzatore già presente!",QMessageBox::Ok);
+            return;
+        }
+    }
+    generica.push_back(org);
+    ui->organizzatoreText->clear();
+}
+
+
+void MainWindow::on_aggiungiConferenza_clicked()
+{
+    QString n = ui->nomeConfText->text();
+    QString a = ui->acronimoConfText->text();
+    QString l = ui->luogoText->text();
+    QDate data = ui->calendarioRivista->selectedDate();
+    QString d = data.toString(Qt::DateFormat::ISODate);
+    int nP = ui->numPartecipantiBox->text().toInt();
+
+    if (n.isEmpty() || a.isEmpty() || generica.isEmpty() || nP == 0){
+        QMessageBox::critical(this,"Campo vuoto","Riempire eventuali campi vuoti o aggiungere almeno un organizzatore!",QMessageBox::Ok);
+        return;
+    }
+    if (gestPubblicazioni.aggiungiConferenza(n,a,l,articoli,generica,d, nP)){
+        ui->listConferenza->addItem("Nome: " + n + " - Data: " + d);
+        ui->statusBar->showMessage("Conferenza inserita con successo!", 3000);
+    }
+    else{
+        QMessageBox::critical(this,"Errore","Conferenza già presente!",QMessageBox::Ok);
+    }
+    ui->nomeConfText->clear();
+    ui->acronimoConfText->clear();
+    ui->luogoText->clear();
+    ui->numPartecipantiBox->setValue(0);
+    generica.clear();
 }

@@ -20,10 +20,10 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Pubblicazioni.h"
 
-class Conferenza: Pubblicazioni{
+class Conferenza: public Pubblicazioni{
 
 public:
-    Conferenza(QString n, QString a, QString d, QString l, int nP): Pubblicazioni(n,a,d), luogo(l), numPartecipanti(nP) {}
+    Conferenza(QString n, QString a, QString d, QList<Articolo> ar, QList<QString> o, QString l, int nP): Pubblicazioni(n,a,d,ar), organizzatori(o), luogo(l), numPartecipanti(nP) {}
 
     QString getLuogo() const { return luogo; }
     void setLuogo(QString l) { luogo = l; }

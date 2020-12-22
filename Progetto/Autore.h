@@ -24,6 +24,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 class Autore {
 
 public:
+    Autore(): id(0), nome(""), cognome("") {}
     Autore(int i, QString n, QString c, QList<QString> a): id(i), nome(n), cognome(c), afferenze(a) {}
 
     QString getNome() const { return nome; }
