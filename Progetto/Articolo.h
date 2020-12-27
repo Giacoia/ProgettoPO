@@ -24,7 +24,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 class Articolo{
 
 public:
-    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC, QString pI): id(i), numPagine(n), titolo(t), autori(a), keywords(k), prezzo(p), art_correlati(aC), pubblicatoPer(pI) {}
+    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC, QString pI): id(i), numPagine(n), titolo(t), autori(a), keyword(k), prezzo(p), art_correlati(aC), pubblicatoPer(pI) {}
 
     int getId() const { return id; }
     void setId(int i) { id = i; }
@@ -38,16 +38,51 @@ public:
     float getPrezzo() const { return prezzo; }
     void setPrezzo(float p) { prezzo = p; }
 
-    const QList<QString>& keyword() { return keywords; }
+    const QList<QString>& Keyword() { return keyword; }
     const QList<QString>& artCorrelati() { return art_correlati; }
 
     QString getPubblicatoPer() const { return pubblicatoPer; }
+
+    friend ostream& operator<<(ostream& o, const Articolo& a){
+        o << "ID ARTICOLO: " << a.id << " - PAGINE: " << a.numPagine << " - TITOLO: " << a.titolo.toStdString() << " - PREZZO: " << a.prezzo << endl;
+        if (a.autori.size() == 1)
+            o << "AUTORE: ";
+        else
+            o << "AUTORI: ";
+
+        for (auto aut: a.autori){
+            o << aut << endl;
+        }
+        o << "KEYWORD: ";
+        for (auto k : a.keyword){
+            if (k == a.keyword.back())
+                o << k.toStdString() << "." << endl;
+            else
+                o << k.toStdString() << ", ";
+        }
+        if (a.art_correlati.empty())
+            cout << "NON SONO PRESENTI ARTICOLI CORRELATI";
+
+        if (a.art_correlati.size() == 1)
+            o << "ARTICOLO CORRELATO: ";
+        else
+            o << "ARTICOLI CORRELATI: ";
+
+        for (auto art: a.art_correlati){
+            if (art == a.art_correlati.back())
+                o << art.toStdString() << ".";
+            else
+                o << art.toStdString() << ", ";
+        }
+        o << endl;
+        return o;
+    }
 private:
     int id;
     int numPagine;
     QString titolo;
     QList<Autore> autori;
-    QList<QString> keywords;
+    QList<QString> keyword;
     float prezzo;
     QList<QString> art_correlati;
     QString pubblicatoPer;

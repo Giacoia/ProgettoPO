@@ -32,6 +32,15 @@ public:
     int getVolume() const {return volume; }
     void setVolume(int v) { volume = v; }
 
+    friend ostream& operator<<(ostream& o, const Rivista& rivista) {
+                return rivista.stampa(o);
+            }
+
+protected:
+    ostream& stampa(ostream& o) const {
+        return Pubblicazioni::stampa(o) << " - EDITORE: " << editore.toStdString() << " - VOLUME: " << volume;
+    }
+
 private:
     QString editore;
     int volume;

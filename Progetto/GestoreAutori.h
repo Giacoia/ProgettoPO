@@ -5,7 +5,10 @@
 
 class GestoreAutori{
 public:
-    bool aggiungiAutore(int i, QString n, QString c, QList<QString> a);
+    bool aggiungiAutore(int, QString, QString, QList<QString>);
+    bool isPresente(int,QVector<int>&);
+    QList<Autore> autoriArticolo(const QVector<int>&);
+
     const QList<Autore>& autore() const { return autori; }
 private:
     QList<Autore> autori;

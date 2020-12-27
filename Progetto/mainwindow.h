@@ -20,6 +20,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <sstream>
 #include "GestoreAutori.h"
 #include "GestoreArticoli.h"
 #include "GestorePubblicazioni.h"
@@ -59,9 +60,25 @@ private slots:
 
     void on_aggiungiConferenza_clicked();
 
+    void on_visualizzaRivisteConferenze_clicked();
+
+    void on_aggiungiArticolo_clicked();
+
+    void on_selezionaAutori_clicked();
+
+    void on_aggiungiArtCorrelati_clicked();
+
+    void on_aggiungiKeyword_clicked();
+
+    void on_visualizzaArticoli_clicked();
+
 private:
+    QList<Autore> autori;
     QList<Articolo> articoli;
     QList<QString> generica;
+    QList<QString> keyword;
+    QVector<int> id;
+    GestoreArticoli gestoreArticoli;
     GestoreAutori gestoreAutori;
     GestorePubblicazioni gestPubblicazioni;
     Ui::MainWindow *ui;

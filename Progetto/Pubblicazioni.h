@@ -20,6 +20,8 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include "Articolo.h"
+#include <iostream>
+using namespace std;
 
 class Pubblicazioni{
 
@@ -36,6 +38,21 @@ public:
 
     QString getData() const { return data; }
     void setData(QString d) { data = d; }
+
+    const QList<Articolo>& articoliInseriti() { return articoli; }
+
+    friend ostream& operator<<(ostream& o, const Pubblicazioni& p){
+        return p.stampa(o);
+    }
+
+    void aggiungiArticolo(Articolo a){
+        articoli.push_back(a);
+    }
+protected:
+    virtual ostream& stampa(ostream& o) const {
+        o << "NOME: " << nome.toStdString() << " - ACRONIMO: " << acronimo.toStdString() << " - DATA: " << data.toStdString();
+        return o;
+    }
 
 private:
     QString nome;

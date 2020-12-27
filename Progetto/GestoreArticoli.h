@@ -6,9 +6,9 @@
 class GestoreArticoli{
 
 public:
-    bool aggiungiArticolo(int , int, QString, QList<Autore>, QList<QString>, float, QList<QString>, QString);
+    bool aggiungiArticolo(Articolo);
 
-    const QList<Articolo>& autore() const { return articoli; }
+    const QList<Articolo>& articolo() const { return articoli; }
 
 private:
     QList<Articolo> articoli;

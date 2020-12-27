@@ -31,6 +31,28 @@ public:
     int getNumPartecipanti() const { return numPartecipanti; }
     void setNumPartecipanti(int n) { numPartecipanti = n; }
 
+    const QList<QString>& allOrganizzatori() const { return organizzatori; }
+
+    friend ostream& operator<<(ostream& o, const Conferenza& conferenza) {
+                return conferenza.stampa(o);
+            }
+
+protected:
+    ostream& stampa(ostream& o) const {
+        Pubblicazioni::stampa(o) << " - LUOGO: " << luogo.toStdString() << " - PARTECIPANTI: " << numPartecipanti;
+        if (organizzatori.size() == 1)
+            o << " - ORGANIZZATORE: ";
+        else
+            o << " - ORGANIZZATORI: ";
+        for (auto org: organizzatori){
+            if (org == organizzatori.back()){
+                o << org.toStdString() << ".";
+                return o;
+            }
+            o << org.toStdString() << ", ";
+        }
+        return o;
+    }
 private:
     QString luogo;
     QList<QString> organizzatori;

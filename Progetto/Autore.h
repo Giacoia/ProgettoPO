@@ -19,7 +19,8 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #define AUTORE_H
 
 #include<QMainWindow>
-
+#include <iostream>
+using namespace std;
 
 class Autore {
 
@@ -37,6 +38,22 @@ public:
     void setId(int i) { id = i; }
 
     const QList<QString>& allAfferenze() const { return afferenze; }
+
+    friend ostream& operator<<(ostream& o, const Autore& a){
+        o << "ID: " << a.id << " - NOME: " << a.nome.toStdString() << " - COGNOME: " << a.cognome.toStdString();
+        if (a.afferenze.size() == 1)
+            o << " - AFFERENZA: ";
+        else
+            o << " - AFFERENZE: ";
+        for (auto aff: a.afferenze){
+            if (aff == a.afferenze.back()){
+                o << aff.toStdString() << ".";
+                return o;
+            }
+            o << aff.toStdString() << ", ";
+        }
+        return o;
+    }
 private:
     int id;
     QString nome;

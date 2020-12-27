@@ -9,6 +9,12 @@ class GestorePubblicazioni{
 public:
     bool aggiungiConferenza(QString, QString, QString, QList<Articolo>, QList<QString>, QString, int);
     bool aggiungiRivista(QString, QString, QString, QList<Articolo>, QString, int);
+
+    const QList<Pubblicazioni*>& allPubblicazioni() const { return pubblicazioni; }
+
+    void aggiungiArticoloAPubblicazione(QString, QString, Articolo&);
+
+    QList<Articolo> articoliAutoreInUnAnno(Autore, QString);
 private:
     QList<Pubblicazioni*> pubblicazioni;
 };
