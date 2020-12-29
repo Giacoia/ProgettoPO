@@ -72,6 +72,30 @@ private slots:
 
     void on_visualizzaArticoli_clicked();
 
+    void on_sezioneB_clicked();
+
+    void on_ConfermaDati_clicked();
+
+    void on_rivConfDisponibili_clicked();
+
+    void on_backAggiungiArticolo_clicked();
+
+    void on_ConfermaStruttura_clicked();
+
+    void on_confermaNomeRivista_clicked();
+
+    void on_sezioneC_clicked();
+
+    void on_ConfermaId_clicked();
+
+    void on_ConfermaNomeEAnno_clicked();
+
+    void on_mostraKeyword_clicked();
+
+    void on_sezioneD_clicked();
+
+    void on_ordinaArticoliPerPrezzo_clicked();
+
 private:
     QList<Autore> autori;
     QList<Articolo> articoli;

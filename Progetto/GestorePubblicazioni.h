@@ -12,9 +12,10 @@ public:
 
     const QList<Pubblicazioni*>& allPubblicazioni() const { return pubblicazioni; }
 
-    void aggiungiArticoloAPubblicazione(QString, QString, Articolo&);
+    bool aggiungiArticoloAPubblicazione(QString, QString, Articolo&);
 
-    QList<Articolo> articoliAutoreInUnAnno(Autore, QString);
+    QList<Articolo> articoliAutoreInUnAnno(int, QString);
+    float guadagnoAnnualeConferenza(QString,QString);
 private:
     QList<Pubblicazioni*> pubblicazioni;
 };

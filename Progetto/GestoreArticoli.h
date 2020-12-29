@@ -2,6 +2,7 @@
 #define GESTOREARTICOLI_H
 
 #include "Articolo.h"
+#include <cfloat>
 
 class GestoreArticoli{
 
@@ -10,6 +11,11 @@ public:
 
     const QList<Articolo>& articolo() const { return articoli; }
 
+    QList<Articolo> articoliMembriDiUnaStruttura(QString) const;
+    QList<Articolo> articoliDiUnaRivista(QString) const;
+    QList<Articolo> articoliAutorePrezzoPiuBasso(int) const;
+    QList<QString> keywordGuadagnoPiuAlto() const;
+    QList<Articolo> articoliAutoreOrdinatiPrezzo(int) const;
 private:
     QList<Articolo> articoli;
 };

@@ -24,20 +24,46 @@ bool GestorePubblicazioni::aggiungiConferenza(QString n, QString a, QString d, Q
     return true;
 }
 
-void GestorePubblicazioni::aggiungiArticoloAPubblicazione(QString n, QString d, Articolo & a){
+bool GestorePubblicazioni::aggiungiArticoloAPubblicazione(QString n, QString d, Articolo & a){
     for (auto p: pubblicazioni){
         QString data = p->getData().mid(0,4);
         if (p->getNome() == n && data == d){
             p->aggiungiArticolo(a);
+            return true;
         }
     }
+    return false;
 }
 
-x
+QList<Articolo> GestorePubblicazioni::articoliAutoreInUnAnno(int i, QString d){
+    QList<Articolo> articoliAutore;
+    for (auto p: pubblicazioni){
+        QString data = p->getData().mid(0,4);
+        if (data == d){
+            const QList<Articolo>& articoli = p->articoliInseriti();
+            for (auto ar: articoli){
+                const QList<Autore>& autori = ar.autoriInseriti();
+                for (auto aut: autori){
+                    if (aut.getId() == i)
+                        articoliAutore.push_back(ar);
+                }
+            }
+        }
+    }
+    return articoliAutore;
+}
 
-
-
-
-
+float GestorePubblicazioni::guadagnoAnnualeConferenza(QString n, QString d){
+    float guadagnoConferenza = 0.0;
+    for (auto p: pubblicazioni){
+        QString data = p->getData().mid(0,4);
+        if (p->getNome() == n && data == d){
+            QList<Articolo> articoli = p->articoliInseriti();
+            for (auto art: articoli)
+                guadagnoConferenza+=art.getPrezzo();
+            }
+        }
+    return guadagnoConferenza;
+}
 
 
