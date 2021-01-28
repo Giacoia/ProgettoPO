@@ -36,7 +36,7 @@ public:
     friend ostream& operator<<(ostream& o, const Conferenza& conferenza) {
                 return conferenza.stampa(o);
             }
-
+    Conferenza* clone() const {return new Conferenza(*this); }
 protected:
     ostream& stampa(ostream& o) const {
         Pubblicazioni::stampa(o) << " - LUOGO: " << luogo.toStdString() << " - PARTECIPANTI: " << numPartecipanti;

@@ -96,6 +96,10 @@ private slots:
 
     void on_ordinaArticoliPerPrezzo_clicked();
 
+    void on_ordinaPerVariCriteri_clicked();
+
+    void on_mostraStrutture_clicked();
+
 private:
     QList<Autore> autori;
     QList<Articolo> articoli;

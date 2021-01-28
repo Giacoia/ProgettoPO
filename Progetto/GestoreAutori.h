@@ -9,7 +9,7 @@ public:
     bool isPresente(int,QVector<int>&);
     QList<Autore> autoriArticolo(const QVector<int>&);
 
-    const QList<Autore>& autore() const { return autori; }
+    const QList<Autore>& getAutori() const { return autori; }
 private:
     QList<Autore> autori;
 };

@@ -48,6 +48,8 @@ public:
     void aggiungiArticolo(Articolo a){
         articoli.push_back(a);
     }
+
+    virtual Pubblicazioni* clone() const {return new Pubblicazioni(*this); }
 protected:
     virtual ostream& stampa(ostream& o) const {
         o << "NOME: " << nome.toStdString() << " - ACRONIMO: " << acronimo.toStdString() << " - DATA: " << data.toStdString();

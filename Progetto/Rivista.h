@@ -35,7 +35,7 @@ public:
     friend ostream& operator<<(ostream& o, const Rivista& rivista) {
                 return rivista.stampa(o);
             }
-
+    Rivista* clone() const { return new Rivista(*this); }
 protected:
     ostream& stampa(ostream& o) const {
         return Pubblicazioni::stampa(o) << " - EDITORE: " << editore.toStdString() << " - VOLUME: " << volume;

@@ -38,6 +38,8 @@ public:
     float getPrezzo() const { return prezzo; }
     void setPrezzo(float p) { prezzo = p; }
 
+    //QString getData() const { return data;}
+    //void setData(QString d) { data = d; }
     QString getPubblicatoPer() const { return pubblicatoPer; }
 
     friend ostream& operator<<(ostream& o, const Articolo& a){
@@ -77,7 +79,7 @@ public:
 
     const QList<QString>& Keyword() { return keyword; }
     const QList<QString>& artCorrelati() { return art_correlati; }
-    const QList<Autore> autoriInseriti() { return autori; }
+    const QList<Autore>& autoriInseriti() { return autori; }
 
 private:
     int id;
@@ -88,6 +90,7 @@ private:
     float prezzo;
     QList<QString> art_correlati;
     QString pubblicatoPer;
+    //QString data;
 };
 
 #endif // ARTICOLO_H
