@@ -23,7 +23,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 class Conferenza: public Pubblicazioni{
 
 public:
-    Conferenza(QString n, QString a, QString d, QList<Articolo> ar, QList<QString> o, QString l, int nP): Pubblicazioni(n,a,d,ar), organizzatori(o), luogo(l), numPartecipanti(nP) {}
+    Conferenza(QString n, QString a, QString d, QList<Articolo> ar, bool p, QList<QString> o, QString l, int nP): Pubblicazioni(n,a,d,ar,p), organizzatori(o), luogo(l), numPartecipanti(nP) {}
 
     QString getLuogo() const { return luogo; }
     void setLuogo(QString l) { luogo = l; }
@@ -31,12 +31,13 @@ public:
     int getNumPartecipanti() const { return numPartecipanti; }
     void setNumPartecipanti(int n) { numPartecipanti = n; }
 
-    const QList<QString>& allOrganizzatori() const { return organizzatori; }
+    const QList<QString>& getOrganizzatori() const { return organizzatori; }
 
     friend ostream& operator<<(ostream& o, const Conferenza& conferenza) {
                 return conferenza.stampa(o);
             }
     Conferenza* clone() const {return new Conferenza(*this); }
+
 protected:
     ostream& stampa(ostream& o) const {
         Pubblicazioni::stampa(o) << " - LUOGO: " << luogo.toStdString() << " - PARTECIPANTI: " << numPartecipanti;
@@ -53,6 +54,7 @@ protected:
         }
         return o;
     }
+
 private:
     QString luogo;
     QList<QString> organizzatori;

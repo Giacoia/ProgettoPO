@@ -100,6 +100,12 @@ private slots:
 
     void on_mostraStrutture_clicked();
 
+    void on_backToSezioneB();
+
+    void on_backToSezioneC();
+
+    void on_backToSezioneD();
+
 private:
     QList<Autore> autori;
     QList<Articolo> articoli;

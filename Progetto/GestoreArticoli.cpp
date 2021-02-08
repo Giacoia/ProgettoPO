@@ -1,3 +1,20 @@
+/*
+This file is part of ProgettoPO.
+
+ProgettoPO is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProgettoPO is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "GestoreArticoli.h"
 
 void GestoreArticoli::aggiungiArticolo(Articolo A){
@@ -10,37 +27,32 @@ bool GestoreArticoli::isPresente(Articolo A){
     return true;
 }
 
-QList<Articolo> GestoreArticoli::articoliMembriDiUnaStruttura(QString aff) const {
+const QList<Articolo> GestoreArticoli::articoliMembriDiUnaStruttura(const QString& aff) const {
     QList<Articolo> articoliMembriStruttura;
+    int giaInserito = 0;
     for (auto art: articoli){
-        const QList<Autore>& autori = art.autoriInseriti();
+        const QList<Autore>& autori = art.getAutoriInseriti();
         for (auto aut: autori){
-            const QList<QString> afferenze = aut.allAfferenze();
+            const QList<QString> afferenze = aut.getAfferenze();
             for (auto a: afferenze){
-                if (a == aff)
+                if (a == aff){
                     articoliMembriStruttura.push_back(art);
+                    giaInserito++;
+                }
             }
+            if (giaInserito > 0)
+                break;
         }
+        giaInserito = 0;
     }
     return articoliMembriStruttura;
 }
 
-
-QList<Articolo> GestoreArticoli::articoliDiUnaRivista(QString n) const {
-    QList<Articolo> articoliRivista;
-    for (auto art: articoli){
-        if (art.getPubblicatoPer() == n)
-            articoliRivista.push_back(art);
-    }
-    return articoliRivista;
-}
-
-
-QList<Articolo> GestoreArticoli::articoliAutorePrezzoPiuBasso(int i) const {
+const QList<Articolo> GestoreArticoli::articoliAutorePrezzoPiuBasso(int i) const {
     QList<Articolo> articoliEconomici;
     float min = FLT_MAX;
     for (auto art: articoli){
-        QList<Autore> autori = art.autoriInseriti();
+        QList<Autore> autori = art.getAutoriInseriti();
         for (auto aut: autori){
             if (aut.getId() == i){
                 if (art.getPrezzo() <= min){
@@ -66,11 +78,11 @@ void keywordPresenti(QList<QString>& k, QString kW){
     k.push_back(kW);
 }
 
-QList<QString> GestoreArticoli::keywordGuadagnoPiuAlto() const {
+const QList<QString> GestoreArticoli::keywordGuadagnoPiuAlto() const {
     QList<QString> keyword;
     QList<QString> keywordGuadagnoMaggiore;
     for (auto art: articoli){
-        const QList<QString>& keywordDisponibili = art.Keyword();
+        const QList<QString>& keywordDisponibili = art.getKeyword();
         for (auto k: keywordDisponibili)
         keywordPresenti(keyword, k);
     }
@@ -79,7 +91,7 @@ QList<QString> GestoreArticoli::keywordGuadagnoPiuAlto() const {
     for (auto k: keyword){
         float prezzo = 0.0;
         for (auto art: articoli){
-            const QList<QString>& keywordDisponibili = art.Keyword();
+            const QList<QString>& keywordDisponibili = art.getKeyword();
             for (auto keyword: keywordDisponibili){
                 if (k == keyword){
                     prezzo += art.getPrezzo();
@@ -102,10 +114,10 @@ bool compare(const Articolo& art1, const Articolo& art2){
     return art1.getPrezzo() < art2.getPrezzo();
 }
 
-QList<Articolo> GestoreArticoli::articoliAutoreOrdinatiPrezzo(int i) const {
+const QList<Articolo> GestoreArticoli::articoliAutoreOrdinatiPrezzo(int i) const {
     QList<Articolo> articoliAutore;
     for (auto art: articoli){
-        const QList<Autore>& autori = art.autoriInseriti();
+        const QList<Autore>& autori = art.getAutoriInseriti();
         for (auto aut: autori){
             if (aut.getId() == i)
                 articoliAutore.push_back(art);
@@ -119,7 +131,7 @@ QList<Articolo> GestoreArticoli::articoliAutoreOrdinatiPrezzo(int i) const {
 QList<QString> getStrutture(const QList<Autore>& autori) {
     QList<QString> strutture;
     for (auto a: autori){
-        const QList<QString>& afferenze = a.allAfferenze();
+        const QList<QString>& afferenze = a.getAfferenze();
         for (auto aff: afferenze){
             int cont = 0;
             for (auto s: strutture){
@@ -130,24 +142,25 @@ QList<QString> getStrutture(const QList<Autore>& autori) {
             }
             if (cont == 0)
                 strutture.push_back(aff);
-            cont = 0;
         }
     }
     return strutture;
 }
 
-QList<QString> GestoreArticoli::strutturePiuProduttive(const QList<Autore>& autori) const {
+const QList<QString> GestoreArticoli::strutturePiuProduttive(const QList<Autore>& autori) const {
     QList<QString> strutture = getStrutture(autori);
     QVector<int> produzione;
     int max = INT_MIN;
     for (auto s: strutture){
-        int cont = 0;
+        int prod = 0;
         for (auto art: articoli){
-            const QList<Autore>& autori = art.autoriInseriti();
+            int cont = 0;
+            const QList<Autore>& autori = art.getAutoriInseriti();
             for (auto a: autori){
-                const QList<QString>& afferenze = a.allAfferenze();
+                const QList<QString>& afferenze = a.getAfferenze();
                 for (auto aff: afferenze){
                     if (aff == s){
+                        prod++;
                         cont++;
                         break;
                     }
@@ -156,9 +169,9 @@ QList<QString> GestoreArticoli::strutturePiuProduttive(const QList<Autore>& auto
                     break;
             }
         }
-        produzione.push_back(cont);
-        if (cont > max)
-            max = cont;
+        produzione.push_back(prod);
+        if (prod > max)
+            max = prod;
     }
     QList<QString> struttureMigliori;
     for (int i = 0; i < produzione.size(); i++){

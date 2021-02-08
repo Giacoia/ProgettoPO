@@ -24,7 +24,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 class Articolo{
 
 public:
-    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC, QString pI): id(i), numPagine(n), titolo(t), autori(a), keyword(k), prezzo(p), art_correlati(aC), pubblicatoPer(pI) {}
+    Articolo(int i, int n, QString t, QList<Autore> a, QList<QString> k, float p, QList<QString> aC, QString pI): id(i), numPagine(n), titolo(t), autori(a), keyword(k), prezzo(p), art_correlati(aC), nomePubblicazione(pI) {}
 
     int getId() const { return id; }
     void setId(int i) { id = i; }
@@ -38,16 +38,14 @@ public:
     float getPrezzo() const { return prezzo; }
     void setPrezzo(float p) { prezzo = p; }
 
-    //QString getData() const { return data;}
-    //void setData(QString d) { data = d; }
-    QString getPubblicatoPer() const { return pubblicatoPer; }
+    QString getnomePubblicazione() const { return nomePubblicazione; }
 
     friend ostream& operator<<(ostream& o, const Articolo& a){
-        o << "ID ARTICOLO: " << a.id << " - PAGINE: " << a.numPagine << " - TITOLO: " << a.titolo.toStdString() << " - PREZZO: " << a.prezzo << " - PUBBLICATO PER: " << a.pubblicatoPer.toStdString() << endl;
+        o << "ID ARTICOLO: " << a.id << " - PAGINE: " << a.numPagine << " - TITOLO: " << a.titolo.toStdString() << " - PREZZO: " << a.prezzo << " - PUBBLICATO PER: " << a.nomePubblicazione.toStdString() << endl;
         if (a.autori.size() == 1)
-            o << "AUTORE: ";
+            o << "AUTORE: " << endl;
         else
-            o << "AUTORI: ";
+            o << "AUTORI: " << endl;
 
         for (auto aut: a.autori){
             o << aut << endl;
@@ -77,9 +75,9 @@ public:
         return o;
     }
 
-    const QList<QString>& Keyword() { return keyword; }
-    const QList<QString>& artCorrelati() { return art_correlati; }
-    const QList<Autore>& autoriInseriti() { return autori; }
+    const QList<QString>& getKeyword() { return keyword; }
+    const QList<QString>& getartCorrelati() { return art_correlati; }
+    const QList<Autore>& getAutoriInseriti() { return autori; }
 
 private:
     int id;
@@ -89,8 +87,7 @@ private:
     QList<QString> keyword;
     float prezzo;
     QList<QString> art_correlati;
-    QString pubblicatoPer;
-    //QString data;
+    QString nomePubblicazione;
 };
 
 #endif // ARTICOLO_H

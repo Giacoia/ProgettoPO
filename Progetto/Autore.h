@@ -37,7 +37,7 @@ public:
     int getId() const { return id; }
     void setId(int i) { id = i; }
 
-    const QList<QString>& allAfferenze() const { return afferenze; }
+    const QList<QString>& getAfferenze() const { return afferenze; }
 
     friend ostream& operator<<(ostream& o, const Autore& a){
         o << "ID: " << a.id << " - NOME: " << a.nome.toStdString() << " - COGNOME: " << a.cognome.toStdString();

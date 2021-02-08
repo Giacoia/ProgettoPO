@@ -188,6 +188,12 @@ public:
     QLabel *label_14;
     QLineEdit *nomeRivistaScelto;
     QPushButton *confermaNomeRivista;
+    QWidget *mostraSezioneBPage;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_14;
+    QLabel *label_27;
+    QListWidget *listMetodiSezB;
+    QPushButton *backSezioneB;
     QWidget *sezioneCPage;
     QPushButton *backHome_9;
     QWidget *layoutWidget19;
@@ -213,6 +219,12 @@ public:
     QLabel *label_21;
     QListWidget *listKeyword;
     QPushButton *mostraKeyword;
+    QWidget *mostraSezioneCPage;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout_15;
+    QLabel *label_28;
+    QListWidget *listMetodisezC;
+    QPushButton *backSezioneC;
     QWidget *sezioneDPage;
     QPushButton *backHome_10;
     QWidget *layoutWidget23;
@@ -227,11 +239,17 @@ public:
     QLabel *label_25;
     QLineEdit *keyword;
     QPushButton *ordinaPerVariCriteri;
-    QWidget *widget;
+    QWidget *layoutWidget25;
     QVBoxLayout *verticalLayout_13;
     QLabel *label_26;
     QListWidget *listStruttureProduttive;
     QPushButton *mostraStrutture;
+    QWidget *mostraSezioneDPage;
+    QWidget *widget2;
+    QVBoxLayout *verticalLayout_16;
+    QLabel *label_29;
+    QListWidget *listMetodiSezD;
+    QPushButton *backSezioneD;
     QMenuBar *menubar;
     QStatusBar *statusBar;
 
@@ -318,15 +336,15 @@ public:
 
         sezioneB = new QPushButton(homePage);
         sezioneB->setObjectName(QString::fromUtf8("sezioneB"));
-        sezioneB->setGeometry(QRect(110, 250, 151, 31));
+        sezioneB->setGeometry(QRect(100, 340, 151, 31));
         sezioneB->setFont(font1);
         sezioneC = new QPushButton(homePage);
         sezioneC->setObjectName(QString::fromUtf8("sezioneC"));
-        sezioneC->setGeometry(QRect(330, 250, 151, 31));
+        sezioneC->setGeometry(QRect(330, 340, 151, 31));
         sezioneC->setFont(font);
         sezioneD = new QPushButton(homePage);
         sezioneD->setObjectName(QString::fromUtf8("sezioneD"));
-        sezioneD->setGeometry(QRect(580, 250, 121, 31));
+        sezioneD->setGeometry(QRect(570, 340, 121, 31));
         sezioneD->setFont(font);
         stackedWidget->addWidget(homePage);
         aggiungiAutorePage = new QWidget();
@@ -427,6 +445,7 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(layoutWidget5);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setFont(font);
 
         verticalLayout_2->addWidget(label);
 
@@ -503,6 +522,7 @@ public:
 
         aggiungiOrganizzatore = new QPushButton(layoutWidget6);
         aggiungiOrganizzatore->setObjectName(QString::fromUtf8("aggiungiOrganizzatore"));
+        aggiungiOrganizzatore->setFont(font2);
 
         formLayout_5->setWidget(5, QFormLayout::FieldRole, aggiungiOrganizzatore);
 
@@ -628,6 +648,7 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         label_5 = new QLabel(layoutWidget10);
         label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font);
 
         verticalLayout_6->addWidget(label_5);
 
@@ -854,6 +875,7 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         label_4 = new QLabel(layoutWidget15);
         label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font);
 
         verticalLayout_5->addWidget(label_4);
 
@@ -895,7 +917,11 @@ public:
 
         ConfermaDati = new QPushButton(layoutWidget16);
         ConfermaDati->setObjectName(QString::fromUtf8("ConfermaDati"));
-        ConfermaDati->setFont(font);
+        QFont font4;
+        font4.setBold(false);
+        font4.setItalic(true);
+        font4.setWeight(50);
+        ConfermaDati->setFont(font4);
 
         formLayout_7->setWidget(5, QFormLayout::SpanningRole, ConfermaDati);
 
@@ -940,7 +966,7 @@ public:
 
         ConfermaStruttura = new QPushButton(layoutWidget17);
         ConfermaStruttura->setObjectName(QString::fromUtf8("ConfermaStruttura"));
-        ConfermaStruttura->setFont(font);
+        ConfermaStruttura->setFont(font4);
 
         formLayout_8->setWidget(2, QFormLayout::SpanningRole, ConfermaStruttura);
 
@@ -969,11 +995,37 @@ public:
 
         confermaNomeRivista = new QPushButton(layoutWidget18);
         confermaNomeRivista->setObjectName(QString::fromUtf8("confermaNomeRivista"));
-        confermaNomeRivista->setFont(font);
+        confermaNomeRivista->setFont(font4);
 
         formLayout_9->setWidget(2, QFormLayout::SpanningRole, confermaNomeRivista);
 
         stackedWidget->addWidget(sezioneBPage);
+        mostraSezioneBPage = new QWidget();
+        mostraSezioneBPage->setObjectName(QString::fromUtf8("mostraSezioneBPage"));
+        widget = new QWidget(mostraSezioneBPage);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(10, 10, 811, 581));
+        verticalLayout_14 = new QVBoxLayout(widget);
+        verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
+        verticalLayout_14->setContentsMargins(0, 0, 0, 0);
+        label_27 = new QLabel(widget);
+        label_27->setObjectName(QString::fromUtf8("label_27"));
+        label_27->setFont(font);
+
+        verticalLayout_14->addWidget(label_27);
+
+        listMetodiSezB = new QListWidget(widget);
+        listMetodiSezB->setObjectName(QString::fromUtf8("listMetodiSezB"));
+
+        verticalLayout_14->addWidget(listMetodiSezB);
+
+        backSezioneB = new QPushButton(widget);
+        backSezioneB->setObjectName(QString::fromUtf8("backSezioneB"));
+        backSezioneB->setFont(font3);
+
+        verticalLayout_14->addWidget(backSezioneB);
+
+        stackedWidget->addWidget(mostraSezioneBPage);
         sezioneCPage = new QWidget();
         sezioneCPage->setObjectName(QString::fromUtf8("sezioneCPage"));
         backHome_9 = new QPushButton(sezioneCPage);
@@ -1005,7 +1057,7 @@ public:
 
         ConfermaId = new QPushButton(layoutWidget19);
         ConfermaId->setObjectName(QString::fromUtf8("ConfermaId"));
-        ConfermaId->setFont(font);
+        ConfermaId->setFont(font4);
 
         formLayout_10->setWidget(3, QFormLayout::SpanningRole, ConfermaId);
 
@@ -1040,7 +1092,7 @@ public:
 
         ConfermaNomeEAnno = new QPushButton(layoutWidget20);
         ConfermaNomeEAnno->setObjectName(QString::fromUtf8("ConfermaNomeEAnno"));
-        ConfermaNomeEAnno->setFont(font);
+        ConfermaNomeEAnno->setFont(font4);
 
         formLayout_11->setWidget(3, QFormLayout::SpanningRole, ConfermaNomeEAnno);
 
@@ -1085,11 +1137,37 @@ public:
 
         mostraKeyword = new QPushButton(layoutWidget22);
         mostraKeyword->setObjectName(QString::fromUtf8("mostraKeyword"));
-        mostraKeyword->setFont(font);
+        mostraKeyword->setFont(font4);
 
         verticalLayout_12->addWidget(mostraKeyword);
 
         stackedWidget->addWidget(sezioneCPage);
+        mostraSezioneCPage = new QWidget();
+        mostraSezioneCPage->setObjectName(QString::fromUtf8("mostraSezioneCPage"));
+        widget1 = new QWidget(mostraSezioneCPage);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(0, 0, 821, 591));
+        verticalLayout_15 = new QVBoxLayout(widget1);
+        verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
+        verticalLayout_15->setContentsMargins(0, 0, 0, 0);
+        label_28 = new QLabel(widget1);
+        label_28->setObjectName(QString::fromUtf8("label_28"));
+        label_28->setFont(font);
+
+        verticalLayout_15->addWidget(label_28);
+
+        listMetodisezC = new QListWidget(widget1);
+        listMetodisezC->setObjectName(QString::fromUtf8("listMetodisezC"));
+
+        verticalLayout_15->addWidget(listMetodisezC);
+
+        backSezioneC = new QPushButton(widget1);
+        backSezioneC->setObjectName(QString::fromUtf8("backSezioneC"));
+        backSezioneC->setFont(font3);
+
+        verticalLayout_15->addWidget(backSezioneC);
+
+        stackedWidget->addWidget(mostraSezioneCPage);
         sezioneDPage = new QWidget();
         sezioneDPage->setObjectName(QString::fromUtf8("sezioneDPage"));
         backHome_10 = new QPushButton(sezioneDPage);
@@ -1121,6 +1199,7 @@ public:
 
         ordinaArticoliPerPrezzo = new QPushButton(layoutWidget23);
         ordinaArticoliPerPrezzo->setObjectName(QString::fromUtf8("ordinaArticoliPerPrezzo"));
+        ordinaArticoliPerPrezzo->setFont(font2);
 
         formLayout_12->setWidget(2, QFormLayout::SpanningRole, ordinaArticoliPerPrezzo);
 
@@ -1148,32 +1227,59 @@ public:
 
         ordinaPerVariCriteri = new QPushButton(layoutWidget24);
         ordinaPerVariCriteri->setObjectName(QString::fromUtf8("ordinaPerVariCriteri"));
+        ordinaPerVariCriteri->setFont(font2);
 
         formLayout_13->setWidget(2, QFormLayout::SpanningRole, ordinaPerVariCriteri);
 
-        widget = new QWidget(sezioneDPage);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(280, 290, 258, 217));
-        verticalLayout_13 = new QVBoxLayout(widget);
+        layoutWidget25 = new QWidget(sezioneDPage);
+        layoutWidget25->setObjectName(QString::fromUtf8("layoutWidget25"));
+        layoutWidget25->setGeometry(QRect(280, 290, 258, 217));
+        verticalLayout_13 = new QVBoxLayout(layoutWidget25);
         verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
         verticalLayout_13->setContentsMargins(0, 0, 0, 0);
-        label_26 = new QLabel(widget);
+        label_26 = new QLabel(layoutWidget25);
         label_26->setObjectName(QString::fromUtf8("label_26"));
         label_26->setFont(font);
 
         verticalLayout_13->addWidget(label_26);
 
-        listStruttureProduttive = new QListWidget(widget);
+        listStruttureProduttive = new QListWidget(layoutWidget25);
         listStruttureProduttive->setObjectName(QString::fromUtf8("listStruttureProduttive"));
 
         verticalLayout_13->addWidget(listStruttureProduttive);
 
-        mostraStrutture = new QPushButton(widget);
+        mostraStrutture = new QPushButton(layoutWidget25);
         mostraStrutture->setObjectName(QString::fromUtf8("mostraStrutture"));
 
         verticalLayout_13->addWidget(mostraStrutture);
 
         stackedWidget->addWidget(sezioneDPage);
+        mostraSezioneDPage = new QWidget();
+        mostraSezioneDPage->setObjectName(QString::fromUtf8("mostraSezioneDPage"));
+        widget2 = new QWidget(mostraSezioneDPage);
+        widget2->setObjectName(QString::fromUtf8("widget2"));
+        widget2->setGeometry(QRect(0, 0, 821, 591));
+        verticalLayout_16 = new QVBoxLayout(widget2);
+        verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
+        verticalLayout_16->setContentsMargins(0, 0, 0, 0);
+        label_29 = new QLabel(widget2);
+        label_29->setObjectName(QString::fromUtf8("label_29"));
+        label_29->setFont(font1);
+
+        verticalLayout_16->addWidget(label_29);
+
+        listMetodiSezD = new QListWidget(widget2);
+        listMetodiSezD->setObjectName(QString::fromUtf8("listMetodiSezD"));
+
+        verticalLayout_16->addWidget(listMetodiSezD);
+
+        backSezioneD = new QPushButton(widget2);
+        backSezioneD->setObjectName(QString::fromUtf8("backSezioneD"));
+        backSezioneD->setFont(font3);
+
+        verticalLayout_16->addWidget(backSezioneD);
+
+        stackedWidget->addWidget(mostraSezioneDPage);
 
         horizontalLayout->addWidget(stackedWidget);
 
@@ -1211,7 +1317,7 @@ public:
         afferenza->setText(QCoreApplication::translate("MainWindow", "Afferenza:", nullptr));
         aggiungiAfferenza->setText(QCoreApplication::translate("MainWindow", "aggiungi afferenza", nullptr));
         backHome->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Autori ", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Autori:", nullptr));
         backHome_2->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         backHome_5->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         nomeConferenza->setText(QCoreApplication::translate("MainWindow", "Nome:", nullptr));
@@ -1253,18 +1359,20 @@ public:
         backHome_8->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Inserisci l'id dell'autore:", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Inserisci l'anno di pubblicazione:", nullptr));
-        ConfermaDati->setText(QCoreApplication::translate("MainWindow", "Conferma", nullptr));
+        ConfermaDati->setText(QCoreApplication::translate("MainWindow", "Mostra", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "ARTICOLI PUBBLICATI DA AUTORE IN UN DATO ANNO", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "ARTICOLI PUBBLICATI DAI MEMBRI DI UNA STRUTTURA", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "Inserisci il nome della struttura:", nullptr));
-        ConfermaStruttura->setText(QCoreApplication::translate("MainWindow", "Conferma", nullptr));
+        ConfermaStruttura->setText(QCoreApplication::translate("MainWindow", "Mostra", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "ARTICOLI PUBBLICATI PER UNA RIVISTA", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Inserisci il nome della rivista:", nullptr));
-        confermaNomeRivista->setText(QCoreApplication::translate("MainWindow", "Conferma", nullptr));
+        confermaNomeRivista->setText(QCoreApplication::translate("MainWindow", "mostra", nullptr));
+        label_27->setText(QCoreApplication::translate("MainWindow", "Articoli:", nullptr));
+        backSezioneB->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         backHome_9->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "ARTICOLI PI\303\231 ECONOMICI DI UN AUTORE", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "Inserisci l'id dell'autore: ", nullptr));
-        ConfermaId->setText(QCoreApplication::translate("MainWindow", "Conferma", nullptr));
+        ConfermaId->setText(QCoreApplication::translate("MainWindow", "Mostra", nullptr));
         label_17->setText(QCoreApplication::translate("MainWindow", "GUADAGNO DI UNA CONFERENZA IN UN ANNO PRECISO", nullptr));
         label_18->setText(QCoreApplication::translate("MainWindow", "Inserisci il nome della conferenza:", nullptr));
         label_19->setText(QCoreApplication::translate("MainWindow", "Anno di presentazione:", nullptr));
@@ -1272,6 +1380,8 @@ public:
         label_20->setText(QCoreApplication::translate("MainWindow", "Guadagno Conferenza:", nullptr));
         label_21->setText(QCoreApplication::translate("MainWindow", "KEYWORD CHE PORTANO AL GUADAGNO PIU ALTO", nullptr));
         mostraKeyword->setText(QCoreApplication::translate("MainWindow", "Mostra", nullptr));
+        label_28->setText(QCoreApplication::translate("MainWindow", "Articoli:", nullptr));
+        backSezioneC->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         backHome_10->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         label_22->setText(QCoreApplication::translate("MainWindow", "ARTICOLI DI UN AUTORE ORDINATI PER PREZZO", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "Inserisci id autore: ", nullptr));
@@ -1281,6 +1391,8 @@ public:
         ordinaPerVariCriteri->setText(QCoreApplication::translate("MainWindow", "ordina", nullptr));
         label_26->setText(QCoreApplication::translate("MainWindow", "STRUTTURE PI\303\231 PRODUTTIVE:", nullptr));
         mostraStrutture->setText(QCoreApplication::translate("MainWindow", "mostra", nullptr));
+        label_29->setText(QCoreApplication::translate("MainWindow", "Articoli:", nullptr));
+        backSezioneD->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
     } // retranslateUi
 
 };

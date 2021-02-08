@@ -27,7 +27,7 @@ class Pubblicazioni{
 
 public:
     Pubblicazioni(): nome(""),acronimo(""),data("") {}
-    Pubblicazioni(QString n, QString a, QString d, QList<Articolo> ar): nome(n), acronimo(a), data(d), articoli(ar) {}
+    Pubblicazioni(QString n, QString a, QString d, QList<Articolo> ar,bool p): nome(n), acronimo(a), data(d), articoli(ar),pubblicatoPer(p) {}
     virtual ~Pubblicazioni() {}
 
     QString getNome() const { return nome; }
@@ -39,7 +39,10 @@ public:
     QString getData() const { return data; }
     void setData(QString d) { data = d; }
 
-    const QList<Articolo>& articoliInseriti() { return articoli; }
+    bool getPubblicatoPer() const { return pubblicatoPer; }
+    void setPubblicatoPer(bool p) { pubblicatoPer = p; }
+
+    const QList<Articolo>& getArticoliInseriti() { return articoli; }
 
     friend ostream& operator<<(ostream& o, const Pubblicazioni& p){
         return p.stampa(o);
@@ -61,6 +64,7 @@ private:
     QString acronimo;
     QString data;
     QList<Articolo> articoli;
+    bool pubblicatoPer;                       //true per conferenza, false per rivista
 };
 
 #endif // PUBBLICAZIONI_H
