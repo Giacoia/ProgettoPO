@@ -471,7 +471,7 @@
             </font>
            </property>
            <property name="text">
-            <string>luogo:</string>
+            <string>Luogo:</string>
            </property>
           </widget>
          </item>
@@ -636,7 +636,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Aggiungi</string>
+            <string>aggiungi</string>
            </property>
           </widget>
          </item>
@@ -756,7 +756,7 @@
             </font>
            </property>
            <property name="text">
-            <string>home</string>
+            <string>Home</string>
            </property>
           </widget>
          </item>
@@ -875,7 +875,7 @@
             </font>
            </property>
            <property name="text">
-            <string>articoli Correlati:</string>
+            <string>Articoli Correlati:</string>
            </property>
           </widget>
          </item>
@@ -939,7 +939,7 @@
          </font>
         </property>
         <property name="text">
-         <string>aggiungi Articolo</string>
+         <string>aggiungi articolo</string>
         </property>
        </widget>
        <widget class="QWidget" name="layoutWidget">
@@ -996,7 +996,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Conferma</string>
+            <string>conferma</string>
            </property>
           </widget>
          </item>
@@ -1021,7 +1021,7 @@
             </font>
            </property>
            <property name="text">
-            <string>id articoli già scelti:</string>
+            <string>Id articoli già scelti:</string>
            </property>
           </widget>
          </item>
@@ -1030,7 +1030,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1065,7 +1065,7 @@
             </font>
            </property>
            <property name="text">
-            <string>anno di pubblicazione:</string>
+            <string>Anno di pubblicazione:</string>
            </property>
           </widget>
          </item>
@@ -1119,6 +1119,7 @@
            <property name="font">
             <font>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -1241,7 +1242,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Mostra</string>
+            <string>mostra</string>
            </property>
           </widget>
          </item>
@@ -1319,7 +1320,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Mostra</string>
+            <string>mostra</string>
            </property>
           </widget>
          </item>
@@ -1499,7 +1500,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Mostra</string>
+            <string>mostra</string>
            </property>
           </widget>
          </item>
@@ -1567,7 +1568,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Mostra</string>
+            <string>mostra</string>
            </property>
           </widget>
          </item>
@@ -1640,7 +1641,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Mostra</string>
+            <string>mostra</string>
            </property>
           </widget>
          </item>
@@ -1763,7 +1764,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Ordina</string>
+            <string>ordina</string>
            </property>
           </widget>
          </item>
@@ -1794,6 +1795,12 @@
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_25">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Inserisci una keyword: </string>
            </property>
