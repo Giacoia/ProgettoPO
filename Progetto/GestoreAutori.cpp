@@ -27,7 +27,8 @@ bool GestoreAutori::aggiungiAutore(int i, QString n, QString c, QList<QString> a
     return true;
 }
 
-bool GestoreAutori::isPresente(int i,QVector<int>& ar){
+
+bool GestoreAutori::isPresente(int i,QVector<int>& ar) const {
     for (auto a: autori){
         if (a.getId() == i){
             ar.push_back(i);
@@ -36,6 +37,7 @@ bool GestoreAutori::isPresente(int i,QVector<int>& ar){
     }
     return false;
 }
+
 
 QList<Autore> GestoreAutori::autoriArticolo(const QVector<int>& i){
     QList<Autore> autoriScelti;

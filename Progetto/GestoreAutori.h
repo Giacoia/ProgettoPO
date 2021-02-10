@@ -21,12 +21,14 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #include "Autore.h"
 
 class GestoreAutori{
+
 public:
     bool aggiungiAutore(int, QString, QString, QList<QString>);
-    bool isPresente(int,QVector<int>&);
+    bool isPresente(int,QVector<int>&) const;
     QList<Autore> autoriArticolo(const QVector<int>&);
 
     const QList<Autore>& getAutori() const { return autori; }
+
 private:
     QList<Autore> autori;
 };

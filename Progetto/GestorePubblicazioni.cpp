@@ -24,15 +24,18 @@ void GestorePubblicazioni::svuota(){
     pubblicazioni.clear();
 }
 
+
 GestorePubblicazioni::~GestorePubblicazioni(){
     svuota();
 }
+
 
 GestorePubblicazioni::GestorePubblicazioni(const GestorePubblicazioni& gest){
     for (auto p: gest.pubblicazioni){
         pubblicazioni.push_back(p->clone());
     }
 }
+
 
 GestorePubblicazioni& GestorePubblicazioni::operator=(const GestorePubblicazioni& gest){
     if (this != &gest){
@@ -43,6 +46,7 @@ GestorePubblicazioni& GestorePubblicazioni::operator=(const GestorePubblicazioni
     }
     return *this;
 }
+
 
 bool GestorePubblicazioni::aggiungiRivista(QString n, QString a, QString e,QList<Articolo> ar, QString d, int v){
     Rivista* A = new Rivista(n,a,d,ar,false,e,v);
@@ -58,17 +62,21 @@ bool GestorePubblicazioni::aggiungiRivista(QString n, QString a, QString e,QList
    return true;
 }
 
+
 bool GestorePubblicazioni::aggiungiConferenza(QString n, QString a, QString d, QList<Articolo> ar, QList<QString> o, QString l, int nP){
     Conferenza* A = new Conferenza(n,a,d,ar,true,o,l,nP);
     QString anno = d.mid(0,4);
+
     for (auto r: pubblicazioni){
         QString y = r->getData().mid(0,4);
         if (anno == y && A->getNome() == r->getNome())
             return false;
     }
+
     pubblicazioni.push_back(A);
     return true;
 }
+
 
 void GestorePubblicazioni::aggiungiArticoloAPubblicazione(QString n,QString d, Articolo & a){
     for (auto p: pubblicazioni){
@@ -78,7 +86,8 @@ void GestorePubblicazioni::aggiungiArticoloAPubblicazione(QString n,QString d, A
     }
 }
 
-bool GestorePubblicazioni::EsistePubblicazione(QString n, QString d){
+
+bool GestorePubblicazioni::EsistePubblicazione(QString n, QString d) const{
     for (auto p: pubblicazioni){
         QString data = p->getData().mid(0,4);
         if (p->getNome() == n && data == d){
@@ -88,21 +97,10 @@ bool GestorePubblicazioni::EsistePubblicazione(QString n, QString d){
     return false;
 }
 
-const QList<Articolo> GestorePubblicazioni::articoliDiUnaRivista(QString n,const QList<Pubblicazioni*>& p) const {
-    QList<Articolo> articoliRivista;
-    for (auto pub: p){
-        if (pub->getNome() == n && pub->getPubblicatoPer() == false){
-            const QList<Articolo>& articoli = pub->getArticoliInseriti();
-            for (auto a: articoli){
-                articoliRivista.push_back(a);
-            }
-        }
-    }
-    return articoliRivista;
-}
 
-QList<Articolo> GestorePubblicazioni::articoliAutoreInUnAnno(int i, QString d){
+const QList<Articolo> GestorePubblicazioni::articoliAutoreInUnAnno(int i, QString d) const {
     QList<Articolo> articoliAutore;
+
     for (auto p: pubblicazioni){
         QString data = p->getData().mid(0,4);
         if (data == d){
@@ -116,35 +114,56 @@ QList<Articolo> GestorePubblicazioni::articoliAutoreInUnAnno(int i, QString d){
             }
         }
     }
+
     return articoliAutore;
 }
 
-float GestorePubblicazioni::guadagnoAnnualeConferenza(QString n, QString d){
+
+const QList<Articolo> GestorePubblicazioni::articoliDiUnaRivista(QString n,const QList<Pubblicazioni*>& p) const {
+    QList<Articolo> articoliRivista;
+
+    for (auto pub: p){
+        if (pub->getNome() == n && pub->getPubblicatoPer() == false){
+            const QList<Articolo>& articoli = pub->getArticoliInseriti();
+            for (auto a: articoli){
+                articoliRivista.push_back(a);
+            }
+        }
+    }
+
+    return articoliRivista;
+}
+
+
+float GestorePubblicazioni::guadagnoAnnualeConferenza(QString n, QString d) const{
     float guadagnoConferenza = 0.0;
+
     for (auto p: pubblicazioni){
         QString data = p->getData().mid(0,4);
         if (p->getNome() == n && data == d && p->getPubblicatoPer() == true){
-            QList<Articolo> articoli = p->getArticoliInseriti();
+            const QList<Articolo>& articoli = p->getArticoliInseriti();
             for (auto art: articoli)
                 guadagnoConferenza+=art.getPrezzo();
             }
         }
+
     return guadagnoConferenza;
 }
 
 
-QList<Articolo> GestorePubblicazioni::articoliRelativiKeyword(QString k){
+const QList<Articolo> GestorePubblicazioni::articoliRelativiKeyword(QString k) const{
     QList<Articolo> articoliKeyword;
     QVector<int> date;
+
     for (auto p: pubblicazioni){
         const QList<Articolo>& articoli = p->getArticoliInseriti();
         for (auto a: articoli){
             const QList<QString>& keyword = a.getKeyword();
             for (auto key: keyword){
-                if (key == k){
+                if (key == k){                                                //mi salvo tutti gli articoli che hanno la keyword k
                     articoliKeyword.push_back(a);
                     int data = p->getData().mid(0,4).toInt();
-                    date.push_back(data);
+                    date.push_back(data);                 //mi salvo anche la data di quella pubblicazione, quindi ad ogni keyword è associata una data
                 }
             }
         }
@@ -158,14 +177,14 @@ QList<Articolo> GestorePubblicazioni::articoliRelativiKeyword(QString k){
             if (date[i] < date[i+1]){
                 swap = true;
                 Articolo art = articoliKeyword[i];
-                articoliKeyword[i] = articoliKeyword[i+1];
+                articoliKeyword[i] = articoliKeyword[i+1];      //viene effettuato un doppio swap, sia per gli articoli che per le date
                 articoliKeyword[i+1] = art;
                 int d = date[i];
                 date[i] = date[i+1];
                 date[i+1] = d;
             }
             if (date[i] == date[i+1]){
-                if (articoliKeyword[i].getPrezzo() < articoliKeyword[i+1].getPrezzo()){
+                if (articoliKeyword[i].getPrezzo() > articoliKeyword[i+1].getPrezzo()){
                     swap = true;
                     Articolo art = articoliKeyword[i];
                     articoliKeyword[i] = articoliKeyword[i+1];
@@ -190,6 +209,7 @@ QList<Articolo> GestorePubblicazioni::articoliRelativiKeyword(QString k){
             }
         }
     }
+
     return articoliKeyword;
 }
 

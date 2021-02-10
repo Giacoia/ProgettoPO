@@ -26,7 +26,6 @@ using namespace std;
 class Pubblicazioni{
 
 public:
-    Pubblicazioni(): nome(""),acronimo(""),data("") {}
     Pubblicazioni(QString n, QString a, QString d, QList<Articolo> ar,bool p): nome(n), acronimo(a), data(d), articoli(ar),pubblicatoPer(p) {}
     virtual ~Pubblicazioni() {}
 
@@ -53,6 +52,7 @@ public:
     }
 
     virtual Pubblicazioni* clone() const {return new Pubblicazioni(*this); }
+
 protected:
     virtual ostream& stampa(ostream& o) const {
         o << "NOME: " << nome.toStdString() << " - ACRONIMO: " << acronimo.toStdString() << " - DATA: " << data.toStdString();

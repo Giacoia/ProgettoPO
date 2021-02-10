@@ -100,16 +100,16 @@ private slots:
 
     void on_mostraStrutture_clicked();
 
-    void on_backToSezioneB();
+    void on_backToSezioneB_clicked();
 
-    void on_backToSezioneC();
+    void on_backToSezioneC_clicked();
 
-    void on_backToSezioneD();
+    void on_backToSezioneD_clicked();
 
 private:
     QList<Autore> autori;
     QList<Articolo> articoli;
-    QList<QString> generica;
+    QList<QString> generica;                //è una lista utilizzata per memorizzare più di un tipo di oggetto
     QList<QString> keyword;
     QVector<int> id;
     GestoreArticoli gestoreArticoli;

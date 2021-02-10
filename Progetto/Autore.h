@@ -25,7 +25,6 @@ using namespace std;
 class Autore {
 
 public:
-    Autore(): id(0), nome(""), cognome("") {}
     Autore(int i, QString n, QString c, QList<QString> a): id(i), nome(n), cognome(c), afferenze(a) {}
 
     QString getNome() const { return nome; }
@@ -54,6 +53,7 @@ public:
         }
         return o;
     }
+
 private:
     int id;
     QString nome;

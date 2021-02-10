@@ -26,7 +26,7 @@ class GestoreArticoli{
 
 public:
     void aggiungiArticolo(Articolo);
-    bool isPresente(Articolo);
+    bool isPresente(Articolo) const;
     const QList<Articolo>& getArticoli() const { return articoli; }
 
     const QList<Articolo> articoliMembriDiUnaStruttura(const QString&) const;
@@ -34,6 +34,7 @@ public:
     const QList<QString> keywordGuadagnoPiuAlto() const;
     const QList<Articolo> articoliAutoreOrdinatiPrezzo(int) const;
     const QList<QString> strutturePiuProduttive(const QList<Autore>&) const;
+
 private:
     QList<Articolo> articoli;
 };

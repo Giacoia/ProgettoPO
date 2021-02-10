@@ -23,6 +23,7 @@ along with ProgettoPO.  If not, see <http://www.gnu.org/licenses/>.
 #include "Articolo.h"
 
 class GestorePubblicazioni{
+
 public:
     GestorePubblicazioni() {};
     bool aggiungiConferenza(QString, QString, QString, QList<Articolo>, QList<QString>, QString, int);
@@ -31,18 +32,19 @@ public:
     const QList<Pubblicazioni*>& getPubblicazioni() const { return pubblicazioni; }
 
     void aggiungiArticoloAPubblicazione(QString, QString,Articolo&);
-    bool EsistePubblicazione(QString, QString);
+    bool EsistePubblicazione(QString, QString) const;
 
+    const QList<Articolo> articoliAutoreInUnAnno(int, QString) const;
     const QList<Articolo> articoliDiUnaRivista(QString,const QList<Pubblicazioni*>&) const;
-    QList<Articolo> articoliAutoreInUnAnno(int, QString);
-    float guadagnoAnnualeConferenza(QString,QString);
-    QList<Articolo> articoliRelativiKeyword(QString k);
+    float guadagnoAnnualeConferenza(QString,QString) const;
+    const QList<Articolo> articoliRelativiKeyword(QString k) const;
 
     void svuota();
 
     ~GestorePubblicazioni();
     GestorePubblicazioni(const GestorePubblicazioni&);
     GestorePubblicazioni& operator=(const GestorePubblicazioni&);
+
 private:
     QList<Pubblicazioni*> pubblicazioni;
 };
