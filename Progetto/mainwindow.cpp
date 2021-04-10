@@ -250,7 +250,8 @@ void MainWindow::on_inserisciArticolo_clicked()
     ui->stackedWidget->setCurrentWidget(ui->aggiungiArticoloPage);
     const QList<Autore>& autori = gestoreAutori.getAutori();
     ui->autoriDaScegliere->clear();
-
+    ui->artCorrelatiText->setPlaceholderText("Inserisci un articolo correlato alla volta");
+    ui->keywordText->setPlaceholderText("Inserisci una keyword alla volta");
     if (autori.empty())
         ui->autoriDaScegliere->addItem("Nessun autore presente, aggiungi prima gli autori");
 

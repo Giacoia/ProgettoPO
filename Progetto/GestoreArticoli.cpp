@@ -128,7 +128,6 @@ bool compare(const Articolo& art1, const Articolo& art2){
     return art1.getPrezzo() < art2.getPrezzo();
 }
 
-
 const QList<Articolo> GestoreArticoli::articoliAutoreOrdinatiPrezzo(int i) const {
     QList<Articolo> articoliAutore;
 
